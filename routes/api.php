@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AIAgentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AIChatController;
@@ -10,7 +11,9 @@ Route::get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
 
     Route::post(
-        '/ai/chat',
+        '/ai/chatbot',
         [AIChatController::class, 'chat']
     );
 });
+
+Route::post('/v1/ai/agent', [AIAgentController::class, 'chat']);
