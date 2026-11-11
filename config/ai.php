@@ -16,7 +16,7 @@ return [
 
         'timeout' => (int) env(
             'OLLAMA_TIMEOUT',
-            1000
+            5000
         ),
     ],
 

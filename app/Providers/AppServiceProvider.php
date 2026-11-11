@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\AI\Services\ToolRegistry;
+use App\AI\Tools\ProductTool;
+use App\AI\Tools\StockTool;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,6 +15,17 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        $this->app->singleton(
+            ToolRegistry::class,
+            function () {
+                $registry = new ToolRegistry();
+
+                $registry->register(new ProductTool());
+                $registry->register(new StockTool());
+
+                return $registry;
+            }
+        );
     }
 
     /**
